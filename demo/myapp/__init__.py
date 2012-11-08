@@ -26,7 +26,7 @@ app = bottle.default_app() #create app
 def testGet():
     """ Test endpoint"""
     bottle.response.set_header('content-type', 'text/plain')
-    content =  "Web app is located at %s" % path.dirname(os.path.abspath(__file__))
+    content =  "Web app is located at %s" % path.dirname(path.abspath(__file__))
     return content
 
 # import ends before files so ends routes take precedence

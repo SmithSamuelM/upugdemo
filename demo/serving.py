@@ -57,7 +57,7 @@ if __name__ == "__main__":
     
     args = p.parse_args() 
     
-    if _debug:   #default server
+    if args.debug:   #default server
         bottle.debug(True)
         bottle.run(app=myapp.app,
                    host=args.host, port=args.port,
