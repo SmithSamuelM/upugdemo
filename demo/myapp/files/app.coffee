@@ -1,17 +1,17 @@
 # To compile do
-# $ coffee -c demo.coffee 
-# this creates demo.js in same directory
+# $ coffee -c app.coffee 
+# this creates app.js in same directory
 # To automatically compile
-# $ coffee -w -c demo.coffee &
+# $ coffee -w -c app.coffee &
 
 
 # angular.module() call registers demo for injection into other angular components
-# assign to window.demo if we want to have a global handle to the module
+# assign to window.myApp if we want to have a global handle to the module
 
 # Main App Module 
-demo = angular.module("demo", ['myBlurFocus'])
+myApp = angular.module("myApp", ['genericDirectives'])
 
-demo.config ["$locationProvider", "$routeProvider",
+myApp.config ["$locationProvider", "$routeProvider",
     ($locationProvider, $routeProvider) ->
         $locationProvider.html5Mode(true)
         
@@ -27,7 +27,7 @@ demo.config ["$locationProvider", "$routeProvider",
         return true
 ]
 
-demo.controller('HomeCtlr', ['$scope', '$location', '$route',
+myApp.controller('HomeCtlr', ['$scope', '$location', '$route',
     ($scope, $location, $route) ->
         $scope.$location = $location
         $scope.$route = $route

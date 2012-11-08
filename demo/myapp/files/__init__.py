@@ -26,7 +26,7 @@ STATIC_FILES_PATH = path.dirname(path.abspath(__file__))
 @app.route('/app/<path:path>') # /demo/app/<path>
 @app.route('/app') # /demo/app
 def homeGet(path=''):
-    return bottle.static_file('demo.html', root=STATIC_FILES_PATH)
+    return bottle.static_file('app.html', root=STATIC_FILES_PATH)
 
 @app.route('/static/favicon.ico') # /demo/favicon.ico
 def faviconGet():
