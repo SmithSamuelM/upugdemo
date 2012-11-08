@@ -14,7 +14,7 @@ app = myapp.app #get app from myapp package.
 def homeGet(path=''):
     return bottle.static_file('demo.html', root=myapp.STATIC_FILES_PATH)
 
-@app.route('%s%s' % (myapp.BASE_PATH, '/favicon.ico')) # /demo/favicon.ico
+@app.route('%s%s' % (myapp.BASE_PATH, '/static/favicon.ico')) # /demo/favicon.ico
 def faviconGet():
     return bottle.static_file('favicon.ico', root=myapp.STATIC_FILES_PATH)
 
