@@ -2,16 +2,10 @@
     
 """
 import json
-
 import bottle
+import myapp
 
-import japn
-
-_debug = False
-slogger, flogger = japn.wooder.getLoggers(__name__) #name logger after module
-
-app = japn.app  #get app from japn package.
-
+app = myapp.app  #get app from japn package.
 
 @app.error(400)
 def error400(ex):
@@ -34,7 +28,6 @@ def error404(ex):
 @app.error(405)
 def error405(ex):
     bottle.response.set_header('content-type', 'application/json')
-    #bottle.response.set_header('allow', 'POST')
     return json.dumps(dict(error=ex.body))
 
 @app.error(409)
