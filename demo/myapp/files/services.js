@@ -35,7 +35,7 @@
       };
       return link;
     }
-  ]).directive('contenteditable', function() {
+  ]).directive('myControl', function() {
     var ddo;
     ddo = {
       restrict: 'A',
@@ -45,6 +45,14 @@
         if (!ngModel) {
           return;
         }
+        $scope.$watch(attrs.myControl, function(value) {
+          attrs.$set('myControl', !!value);
+          if (!!value) {
+            return elm.attr('contenteditable', '');
+          } else {
+            return elm.removeAttr('contenteditable');
+          }
+        });
         read = function() {
           return ngModel.$setViewValue(elm.html());
         };

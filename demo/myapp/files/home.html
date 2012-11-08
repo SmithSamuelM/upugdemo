@@ -1,15 +1,18 @@
 <div class="row-fluid">
   <div class="span12">
     
-    <label>Burp<br/>
+    <label>Burp
     <input type="text" name='burp' ng-model='burp'
         my-blur="doMyBlur($event)" my-focus="doMyFocus($event)">
-    
+    </label>
     <p>$scope.test = {{test}} </p>
     <p>$scope.burp = {{burp}} </p>
     
-    
-    <div contenteditable ng-model="foo" name="myfoo">Fantastic</div>
+    <label>
+          <input type="checkbox" name="editable" value="false" ng-model="editable">
+            Editable
+    </label>
+    <div my-control="editable"     ng-model="foo" name="myfoo">Fantastic</div>
     
     <p>$scope.foo = {{foo}} </p>
     <p>$scope.foo</p><textarea ng-model="foo"></textarea>

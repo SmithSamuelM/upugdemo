@@ -20,13 +20,20 @@ directive('myFocus',
             return true
         return link
     ]).
-directive('contenteditable', () ->
+directive('myControl', () ->
     ddo = 
         restrict: 'A' # only activate on element attribute
         require: '?ngModel' # get a hold of NgModelController pass into ctlr
         link: ($scope, elm, attrs, ngModel)->
             return if !ngModel # do nothing if no ng-model
             
+            $scope.$watch(attrs.myControl, (value) ->
+                attrs.$set('myControl', !!value)
+                if !!value
+                    elm.attr('contenteditable', '')
+                else
+                    elm.removeAttr('contenteditable')
+            )
             # Write data to the model
             read = () -> ngModel.$setViewValue(elm.html())
             read(); # initialize
