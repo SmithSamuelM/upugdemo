@@ -5,24 +5,9 @@ import bottle
 
 BASE_PATH = '/demo' # application base, proxy forwards anything starting with this
 
-# Common JavaScript libraries .  ../../libs/web 
-STATIC_LIBS_PATH =  path.join(
-                        path.join(
-                            path.dirname(
-                                path.dirname(
-                                    path.dirname(path.abspath(__file__)))),
-                        'libs'),
-                    'web')
-
-# Application specific Static files ./files 
-STATIC_FILES_PATH = path.join(
-                        path.dirname(path.abspath(__file__)),
-                    'files')
-
-
 app = bottle.default_app() #create app
 
-@app.route('%s%s' % (BASE_PATH, '/test')) # http://localhost:8080/demo/test
+@app.route('/test') # http://localhost:8080/test
 def testGet():
     """ Test endpoint"""
     bottle.response.set_header('content-type', 'text/plain')
@@ -33,3 +18,5 @@ def testGet():
 import ends # dynamic rest endpoint package
 import files #static file package    
 
+app.mount(BASE_PATH, app) #remount app to be behind BASE_PATH for proxy
+# http://localhost:8080/demo/test

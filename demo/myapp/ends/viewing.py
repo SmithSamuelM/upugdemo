@@ -12,7 +12,7 @@ import myapp
 
 app = myapp.app #get app from myapp package.
 
-@app.route('%s%s' % (myapp.BASE_PATH, '/backend/test')) 
+@app.route('/backend/test') 
 def testGet():
     return dict(result='success')
 
