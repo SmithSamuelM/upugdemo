@@ -6,7 +6,9 @@ Demo web application using bottle.py, angular.js, twitter bootstrap, and html5
 [GitHub Repository](https://github.com/SmithSamuelM/upugdemo "Repository Link")
 https://github.com/SmithSamuelM/upugdemo
 
-A github page that documents this in detail can be found at the following:
+See my blog [Samuel Smith](http://samuelsmith.org/) for detailed exposition.
+
+A github page can be found at the following:
 
 [GitHub page](http://smithsamuelm.github.com/upugdemo "GitHub Page")
 http://smithsamuelm.github.com/upugdemo
