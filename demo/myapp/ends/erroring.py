@@ -1,5 +1,7 @@
 """ Error handling
     
+    Bottle 'error' methods do not automatically detect json when returning a dict
+    so must manually jsonify
 """
 import json
 import bottle
@@ -9,7 +11,7 @@ app = myapp.app  #get app from japn package.
 
 @app.error(400)
 def error400(ex):
-    bottle.response.set_header('content-type', 'application/json')
+    bottle.response.set_header('content-type', 'application/json') 
     return json.dumps(dict(error=ex.body))
 
 @app.error(404)
@@ -20,9 +22,8 @@ def error404(ex):
         bottle.response.set_header('content-type', 'text/html')
         return result
     
-    result = dict(error=ex.body)
     bottle.response.set_header('content-type', 'application/json')    
-    return json.dumps(result)
+    return json.dumps(dict(error=ex.body))
 
 
 @app.error(405)

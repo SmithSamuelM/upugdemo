@@ -68,4 +68,28 @@
     return ddo;
   });
 
+  angular.module("teamService", ["ngResource"]).factory("TeamService", [
+    '$resource', function($resource) {
+      return $resource("/demo/backend/teams/:team", {}, {
+        put: {
+          method: 'PUT',
+          params: {}
+        }
+      });
+    }
+  ]);
+
+  angular.module("playerService", ["ngResource"]).factory("PlayerService", [
+    '$resource', function($resource) {
+      return $resource("/demo/backend/team/:team/player/:player", {
+        player: '@name'
+      }, {
+        put: {
+          method: 'PUT',
+          params: {}
+        }
+      });
+    }
+  ]);
+
 }).call(this);

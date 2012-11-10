@@ -9,7 +9,7 @@
 # assign to window.myApp if we want to have a global handle to the module
 
 # Main App Module 
-myApp = angular.module("myApp", ['genericDirectives'])
+myApp = angular.module("myApp", ['genericDirectives', 'teamService', 'playerService'])
 
 myApp.config ["$locationProvider", "$routeProvider",
     ($locationProvider, $routeProvider) ->
@@ -27,21 +27,92 @@ myApp.config ["$locationProvider", "$routeProvider",
         return true
 ]
 
-myApp.controller('HomeCtlr', ['$scope', '$location', '$route',
-    ($scope, $location, $route) ->
+myApp.controller('HomeCtlr', ['$scope', '$location', '$route', 
+    'TeamService', 'PlayerService',
+    ($scope, $location, $route, TeamService, PlayerService) ->
         $scope.$location = $location
         $scope.$route = $route
         $scope.location = window.location
-        
-        $scope.test = "hello world"
-        $scope.doMyBlur = ($event) -> 
-            $scope.test = $scope.burp
-            
-            
-        $scope.doMyFocus = ($event) -> 
-            $scope.test = $scope.burp
-            
-        
         console.log("HomeCtlr")
+        
+        $scope.teams = TeamService.query({team: ""})
+        $scope.team = TeamService.get({team: 'Red'})
+        
+        
+        $scope.test1 = TeamService.get({team: 'Blue'},
+            (data, headers) ->
+                console.log("TeamService success")
+                console.log(data)
+                console.log(headers())
+            ,
+            (response) ->
+                console.log("TeamService fail")
+                console.log(response)
+                console.log(response.headers())
+        )
+        
+        $scope.players = PlayerService.query({team: "Red", player: ""})
+        
+        $scope.betty = PlayerService.get({team: "Red", player: "Betty"},
+            (data, headers) ->
+                console.log("Got Betty")
+                $scope.betty.attack = 0
+                $scope.betty.$save({team: 'Red'})
+        )
+        
+        
+        $scope.player = PlayerService.get({team: "Red", player: "John"})
+        $scope.player.speed = 5
+        $scope.player.health = 10
+        $scope.player.$save({team: "Red", player: "John"},
+            (data, headers) ->
+                console.log("PlayerService Constructor Save Success")
+                console.log(data)
+                console.log(headers())
+                $scope.test4 = $scope.player.$remove({team: 'Red', player: "John"},
+                    (data, headers) ->
+                        console.log("PlayerService Constructor Remove John Success")
+                        console.log(data)
+                        console.log(headers())
+                    ,
+                    (response) ->
+                        console.log("PlayerService Constructor Remove John Fail")
+                        console.log(response)
+                        console.log(response.headers())
+                )
+            ,
+            (response) ->
+                console.log("PlayerService Constructor Save Fail")
+                console.log(response)
+                console.log(response.headers())
+        )
+        
+        
+        
+        $scope.test2 = PlayerService.save({team: 'Red', player: "George"}, {name: 'George', kind: 'bad'},
+            (data, headers) ->
+                console.log("PlayerService Constructor Save Success")
+                console.log(data)
+                console.log(headers())
+                $scope.test3 = PlayerService.remove({team: 'Red', player: "George"}, {},
+                    (data, headers) ->
+                        console.log("PlayerService Constructor Remove George Success")
+                        console.log(data)
+                        console.log(headers())
+                    ,
+                    (response) ->
+                        console.log("PlayerService Constructor Remove George Fail")
+                        console.log(response)
+                        console.log(response.headers())
+                    )
+            ,
+            (response) ->
+                console.log("PlayerService Constructor Save Fail")
+                console.log(response)
+                console.log(response.headers())
+        )
+        
+        
+
         return true
 ])
