@@ -3,8 +3,13 @@ upugdemo
 
 Demo web application using bottle.py, angular.js, twitter bootstrap, and html5
 ------------------------------------------------------------------------
-[github repository](https://github.com/SmithSamuelM/upugdemo "Repository Link")
+[GitHub Repository](https://github.com/SmithSamuelM/upugdemo "Repository Link")
 https://github.com/SmithSamuelM/upugdemo
+
+A github page that documents this in detail can be found at the following:
+
+[GitHub page](http://smithsamuelm.github.com/upugdemo "GitHub Page")
+http://smithsamuelm.github.com/upugdemo
 
 This is in support of a presentation at the Utah Python Users Group on November 8, 2012.
 
