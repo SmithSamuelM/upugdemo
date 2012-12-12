@@ -29,90 +29,34 @@
       $scope.location = window.location;
       console.log("HomeCtlr");
       $scope.teams = TeamService.query({
-        team: ""
+        id: ""
       });
       $scope.team = TeamService.get({
-        team: 'Red'
-      });
-      $scope.test1 = TeamService.get({
-        team: 'Blue'
-      }, function(data, headers) {
-        console.log("TeamService success");
-        console.log(data);
-        return console.log(headers());
-      }, function(response) {
-        console.log("TeamService fail");
-        console.log(response);
-        return console.log(response.headers());
+        id: '1'
       });
       $scope.players = PlayerService.query({
-        team: "Red",
-        player: ""
-      });
-      $scope.betty = PlayerService.get({
-        team: "Red",
-        player: "Betty"
-      }, function(data, headers) {
-        console.log("Got Betty");
-        $scope.betty.attack = 0;
-        return $scope.betty.$save({
-          team: 'Red'
-        });
+        id: ""
       });
       $scope.player = PlayerService.get({
-        team: "Red",
-        player: "John"
-      });
-      $scope.player.speed = 5;
-      $scope.player.health = 10;
-      $scope.player.$save({
-        team: "Red",
-        player: "John"
+        id: '3'
       }, function(data, headers) {
-        console.log("PlayerService Constructor Save Success");
+        console.log("PlayerService get success");
         console.log(data);
         console.log(headers());
-        return $scope.test4 = $scope.player.$remove({
-          team: 'Red',
-          player: "John"
-        }, function(data, headers) {
-          console.log("PlayerService Constructor Remove John Success");
+        console.log($scope.player);
+        $scope.player.speed = 5;
+        $scope.player.health = 10;
+        return $scope.player.$put({}, function(data, headers) {
+          console.log("PlayerService put success");
           console.log(data);
           return console.log(headers());
         }, function(response) {
-          console.log("PlayerService Constructor Remove John Fail");
+          console.log("PlayerService put fail");
           console.log(response);
           return console.log(response.headers());
         });
       }, function(response) {
-        console.log("PlayerService Constructor Save Fail");
-        console.log(response);
-        return console.log(response.headers());
-      });
-      $scope.test2 = PlayerService.save({
-        team: 'Red',
-        player: "George"
-      }, {
-        name: 'George',
-        kind: 'bad'
-      }, function(data, headers) {
-        console.log("PlayerService Constructor Save Success");
-        console.log(data);
-        console.log(headers());
-        return $scope.test3 = PlayerService.remove({
-          team: 'Red',
-          player: "George"
-        }, {}, function(data, headers) {
-          console.log("PlayerService Constructor Remove George Success");
-          console.log(data);
-          return console.log(headers());
-        }, function(response) {
-          console.log("PlayerService Constructor Remove George Fail");
-          console.log(response);
-          return console.log(response.headers());
-        });
-      }, function(response) {
-        console.log("PlayerService Constructor Save Fail");
+        console.log("PlayerService get fail");
         console.log(response);
         return console.log(response.headers());
       });

@@ -70,7 +70,9 @@
 
   angular.module("teamService", ["ngResource"]).factory("TeamService", [
     '$resource', function($resource) {
-      return $resource("/demo/backend/teams/:team", {}, {
+      return $resource("/demo/backend/teams/:id", {
+        id: '@id'
+      }, {
         put: {
           method: 'PUT',
           params: {}
@@ -81,8 +83,8 @@
 
   angular.module("playerService", ["ngResource"]).factory("PlayerService", [
     '$resource', function($resource) {
-      return $resource("/demo/backend/team/:team/player/:player", {
-        player: '@name'
+      return $resource("/demo/backend/players/:id", {
+        id: '@id'
       }, {
         put: {
           method: 'PUT',

@@ -25,18 +25,18 @@ STATIC_FILES_PATH = path.dirname(path.abspath(__file__))
 #catchall for page refreshes of any app url
 @app.route('/app/<path:path>') # /demo/app/<path>
 @app.route('/app') # /demo/app
-def homeGet(path=''):
+def appGet(path=''):
     return bottle.static_file('app.html', root=STATIC_FILES_PATH)
 
-@app.route('/static/favicon.ico') # /demo/favicon.ico
+@app.route('/static/favicon.ico') 
 def faviconGet():
     return bottle.static_file('favicon.ico', root=STATIC_FILES_PATH)
 
 @app.route('/static/libs/<filepath:path>')
-def staticGet(filepath):
+def staticFilesGet(filepath):
     return bottle.static_file(filepath, root=STATIC_LIBS_PATH)
 
 @app.route('/static/files/<filepath:path>')
-def staticGet(filepath):
+def staticLibsGet(filepath):
     return bottle.static_file(filepath, root=STATIC_FILES_PATH)
 

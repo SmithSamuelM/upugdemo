@@ -14,7 +14,7 @@ myApp = angular.module("myApp", ['genericDirectives', 'teamService', 'playerServ
 myApp.config ["$locationProvider", "$routeProvider",
     ($locationProvider, $routeProvider) ->
         $locationProvider.html5Mode(true)
-        
+
         #using absolute urls here in html5 mode
         base = '/demo' # for use in coffeescript string interpolation #{base}
         $routeProvider.when("#{base}/app",
@@ -34,85 +34,40 @@ myApp.controller('HomeCtlr', ['$scope', '$location', '$route',
         $scope.$route = $route
         $scope.location = window.location
         console.log("HomeCtlr")
-        
-        $scope.teams = TeamService.query({team: ""})
-        $scope.team = TeamService.get({team: 'Red'})
-        
-        
-        $scope.test1 = TeamService.get({team: 'Blue'},
+
+        $scope.teams = TeamService.query({id: ""})
+        $scope.team = TeamService.get({id: '1'})
+        $scope.players = PlayerService.query({id: ""})
+        $scope.player = PlayerService.get({id: '3'},
             (data, headers) ->
-                console.log("TeamService success")
+                console.log("PlayerService get success")
                 console.log(data)
                 console.log(headers())
-            ,
-            (response) ->
-                console.log("TeamService fail")
-                console.log(response)
-                console.log(response.headers())
-        )
-        
-        $scope.players = PlayerService.query({team: "Red", player: ""})
-        
-        $scope.betty = PlayerService.get({team: "Red", player: "Betty"},
-            (data, headers) ->
-                console.log("Got Betty")
-                $scope.betty.attack = 0
-                $scope.betty.$save({team: 'Red'})
-        )
-        
-        
-        $scope.player = PlayerService.get({team: "Red", player: "John"})
-        $scope.player.speed = 5
-        $scope.player.health = 10
-        $scope.player.$save({team: "Red", player: "John"},
-            (data, headers) ->
-                console.log("PlayerService Constructor Save Success")
-                console.log(data)
-                console.log(headers())
-                $scope.test4 = $scope.player.$remove({team: 'Red', player: "John"},
-                    (data, headers) ->
-                        console.log("PlayerService Constructor Remove John Success")
+                console.log($scope.player)
+                $scope.player.speed = 5
+                $scope.player.health = 10
+                $scope.player.$put({},
+                    (data,headers)->
+                        console.log("PlayerService put success")
                         console.log(data)
                         console.log(headers())
                     ,
-                    (response) ->
-                        console.log("PlayerService Constructor Remove John Fail")
+                    (response)->
+                        console.log("PlayerService put fail")
                         console.log(response)
                         console.log(response.headers())
                 )
             ,
             (response) ->
-                console.log("PlayerService Constructor Save Fail")
+                console.log("PlayerService get fail")
                 console.log(response)
                 console.log(response.headers())
-        )
+            )
         
-        
-        
-        $scope.test2 = PlayerService.save({team: 'Red', player: "George"}, {name: 'George', kind: 'bad'},
-            (data, headers) ->
-                console.log("PlayerService Constructor Save Success")
-                console.log(data)
-                console.log(headers())
-                $scope.test3 = PlayerService.remove({team: 'Red', player: "George"}, {},
-                    (data, headers) ->
-                        console.log("PlayerService Constructor Remove George Success")
-                        console.log(data)
-                        console.log(headers())
-                    ,
-                    (response) ->
-                        console.log("PlayerService Constructor Remove George Fail")
-                        console.log(response)
-                        console.log(response.headers())
-                    )
-            ,
-            (response) ->
-                console.log("PlayerService Constructor Save Fail")
-                console.log(response)
-                console.log(response.headers())
-        )
-        
-        
-
+       
+       
+    
+    
         return true
 ])
+

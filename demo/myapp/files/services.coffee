@@ -50,16 +50,20 @@ directive('myControl', () ->
     )
 
 angular.module("teamService", ["ngResource"]).factory "TeamService", 
-    ['$resource', ($resource) -> $resource "/demo/backend/teams/:team", {},
+    ['$resource', ($resource) -> $resource "/demo/backend/teams/:id", 
+        {id: '@id'},
         put: 
             method: 'PUT'
             params: {}
     ]
     
 angular.module("playerService", ["ngResource"]).factory "PlayerService", 
-    ['$resource', ($resource) -> $resource "/demo/backend/team/:team/player/:player", 
-        {player: '@name'},
-        put: 
+    ['$resource', ($resource) -> $resource "/demo/backend/players/:id", 
+        {id: '@id'},
+        update: 
             method: 'PUT'
             params: {}
+        create:
+            method: 'POST'
+            params: {id: ''}
     ]

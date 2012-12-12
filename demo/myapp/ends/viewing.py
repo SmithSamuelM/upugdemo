@@ -13,96 +13,150 @@ app = myapp.app #get app from myapp package.
 def testGet():
     return dict(result='success')
 
-@app.route('/backend/teams/') 
-@app.route('/backend/teams') #angular strips trailing slash if no <name>
+@app.route('/backend/teams') #angular strips trailing slash if no <tid>
 def teamsGet():
-    teams =  []
+    
     name = bottle.request.query.get('name', '')
-    if name: #return list of the one team that matches query
-       team = teaming.teams.get(name)
-       if not team:
-            bottle.abort(404, "Team '%s' not found." % name)
-       teams.append(team) #return list with the one team that matches query
-    else: #return list of all teams
-        for team in teaming.teams.values():
+    teams =  []
+    for team in teaming.teams.values():
+        if name: #return list of the teams that matches query
+            if team['name'] == name: 
+               teams.append(team)
+        else: #return list of all teams
             teams.append(team)
+            
     bottle.response.set_header('content-type', 'application/json')
     return json.dumps(teams) 
 
-@app.route('/backend/teams/<name>') #angular strips trailing slash if no <name>
-def teamsNameGet(name):
-    team = teaming.teams.get(name, None)
+@app.route('/backend/teams/<tid>') #angular strips trailing slash if no <name>
+def teamIdGet(tid):
+    try:
+        tid = int(tid)
+    except ValueError:
+        bottle.abort(400, "Invalid team id %s" % tid)
+        
+    team = teaming.teams.get(tid, None)
     if not team:
-        bottle.abort(404, "Team '%s' not found." % name)
+        bottle.abort(404, "Team '%s' not found." % tid)
     return team
 
-
-@app.get('/backend/team/<tname>/player/')
-@app.get('/backend/team/<tname>/player')
-def teamPlayersGet(tname):
-    team = teaming.teams.get(tname, None)
-    if not team:
-        bottle.abort(404, "Team '%s' not found." % tname)
-    players = []
+@app.get('/backend/players') #angular strips trailing slash if no <pid>
+def playersGet():
     name = bottle.request.query.get('name', '')
-    if name: #return list of the one player that matches query
-        player = teaming.teams.get(tname).get('players').get(name)
-        if not player:
-            bottle.abort(404, "Player '%s' not found." % name)
-        players.append(player) #return list with the one player that matches query    
-    else:
-        for player in team['players'].values():
+    players = []
+    for player in teaming.players.values():
+        if name: #return list of the players that matches query
+            if player['name'] == name: 
+               players.append(player)
+        else: #return list of all teams
             players.append(player)
     
     bottle.response.set_header('content-type', 'application/json')
     return json.dumps(players) 
 
-@app.get('/backend/team/<tname>/player/<name>') 
-def teamPlayerGet(tname, name):
-    team = teaming.teams.get(tname, None)
-    if not team:
-        bottle.abort(404, "Team '%s' not found." % tname)
-    player = team['players'].get(name, None)
+@app.get('/backend/players/<pid>') 
+def playerIdGet(pid):
+    try:
+        pid = int(pid)
+    except ValueError:
+        bottle.abort(400, "Invalid player id %s" % pid)    
+    
+    player = teaming.players.get(pid, None)
     if not player:
-        bottle.abort(404, "Player '%s' on team '%s' not found." % (name, tname))    
+        bottle.abort(404, "Player '%s' not found." % (pid,))    
     return player
 
-@app.get('/backend/team/<tname>/player/<name>/put') #testing only
-@app.post('/backend/team/<tname>/player/<name>') 
-@app.put('/backend/team/<tname>/player/<name>') 
-def teamPlayerPut(tname, name):
+@app.get('/backend/players/create/create') #testing only
+@app.post('/backend/players') 
+def playerIdPost():
+    """Create player"""     
     data = bottle.request.json
     if not data:
         bottle.abort(400, "Empty order data in request body.")
-        
-    team = teaming.teams.get(tname, None)
-    if not team:
-        bottle.abort(404, "Team '%s' not found." % tname)
     
-    if data.get('name') and name != data['name']:
-        bottle.abort(400, "Url player name '%s' does not match request body name '%s'."
-                     % (name, data['name']))
-        
-    player = team['players'].get(name, None)
-    if not player: #new player
-        player = teaming.DEFAULT_PLAYER
-        team['players'][name] = player
+    name = data.get('name')
+    if not name:
+        bottle.abort(400, "Name required.")
     
-    player.update(data)
+    try:
+        tid = int(data.get('tid'))
+    except ValueError, TypeError:
+        tid = None
+        data['tid'] = None
+    team = teaming.teams.get(tid) if tid else None
+    
+    player = newPlayer(name = name, team=team)
+    for key, val in data.items():
+        if key in player: #only change exiting fields
+            player[key] = val
+    if team:
+        team['players'][player['id']] = player
     
     return player
 
-@app.get('/backend/team/<tname>/player/<name>/del') #testing only
-@app.delete('/backend/team/<tname>/player/<name>') 
-def teamPlayerDelete(tname, name):
-    team = teaming.teams.get(tname, None)
-    if not team:
-        bottle.abort(404, "Team '%s' not found." % tname)
+@app.get('/backend/players/<pid>/update') #testing only
+@app.put('/backend/players/<pid>') 
+def playerIdPut(pid):
+    """Update player"""
+    try:
+        pid = int(pid)
+    except ValueError:
+        bottle.abort(400, "Invalid player id %s" % pid)      
+    player = teaming.players.get(pid, None)
+    if not player:
+        bottle.abort(404, "Player '%s' not found." % (pid,))     
+    data = bottle.request.json
+    if not data:
+        bottle.abort(400, "Empty order data in request body.")
     
-    player = team['players'].get(name, None)
-    if not player: #new player
-        bottle.abort(404, "Player '%s' on team '%s' not found." % (name, tname))  
+    dpid = data.get('id')
+    if dpid and  dpid != pid:
+        bottle.abort(400, "ID in request body not match ID in url.")
+        
+    name = data.get('name')
+    if not name:
+        bottle.abort(400, "Name required.")
     
-    del team['players'][name]
+    newTid = int(data.get('tid')) if data.get('tid') else None
+    newTeam = teaming.teams.get(newTid)
+    
+    oldTid = int(player.get('tid')) if player.get('tid') else None
+    oldTeam = teaming.teams.get(oldTid)
+    
+    if oldTeam and newTeam != oldTeam and oldTeam['players'][pid]:
+        del oldTeam['players'][pid]
+    
+    if newTeam and newTeam != oldTeam:
+        newTeam['players'][player['id']] = player
+        
+    if not newTeam:
+        data['tid'] = None
+    
+    for key, val in data.items():
+        if key in player: #only change exiting fields
+            player[key] = val
+    
+    return player
+
+@app.get('/backend/players/<pid>/remove') #testing only
+@app.delete('/backend/players/<pid>') 
+def teamPlayerDelete(pid):
+    """Delete player"""
+    try:
+        pid = int(pid)
+    except ValueError:
+        bottle.abort(400, "Invalid player id %s" % pid)
+        
+    player = teaming.players.get(pid, None)
+    if not player:
+        bottle.abort(404, "Player '%s' not found." % (pid,))
+    
+    tid = player.get('tid')
+    team = teaming.teams.get(tid) if tid else none    
+    
+    if team['players'][player['id']]:
+        del team['players'][player['id']]
+    
+    del teaming.players[player['id']]
     
     return {}
