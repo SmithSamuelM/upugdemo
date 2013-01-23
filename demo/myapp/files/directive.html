@@ -1,0 +1,32 @@
+<div class="row-fluid">
+  <div class="span12">
+  
+    
+    <div my-control="blurb" ng-model="foo" name="myfoo">Fantastic</div>
+    <p>{{foo}}</p>
+    <label>
+        <input type="checkbox" name="editable" value="false" ng-model="blurb">
+            Editable
+    </label>
+
+    <pre>
+        window.location.href = {{location.href}}
+        window.location.pathname = {{location.pathname}}
+        $location.absUrl() = {{$location.absUrl()}}
+        $location.url() = {{$location.url()}}
+        $location.protocol() = {{$location.protocol()}}
+        $location.host() = {{$location.host()}}
+        $location.port() = {{$location.port()}}
+        $location.path() = {{$location.path()}}  Document Root Path
+        $location.search() = {{$location.search()}}
+        $location.hash() = {{$location.hash()}}
+        $route.current.templateUrl = {{$route.current.templateUrl}}
+        $route.current.controller = {{$route.current.controller}}
+        $route.current.params = {{$route.current.params}}
+        $route.current.pathParams = {{$route.current.pathParams}}
+        $route.routes = {{$route.routes}}
+    </pre>
+
+  </div><!--/span12-->
+</div><!--/row-fluid-->
+

@@ -1,0 +1,41 @@
+<div class="row-fluid">
+  <div class="span12">
+    <form name="playerForm" class="form-inline">
+      <legend>Player</legend>
+      <div class="controls controls-row">
+        <label>Id<br/>
+          <input type="text" name="id" placeholder="Id" required 
+            ng-model="player.id" readonly>
+        </label>
+        <label>Name<br/>
+          <input type="text" name="name" placeholder="Name" required 
+            ng-model="player.name" >
+        </label>
+        <label>Kind<br/>
+          <input type="text" name="kind" placeholder="Kind" required 
+            ng-model="player.kind" >
+        </label>
+        <label>Strength<br/>
+          <input type="text" name="strength" placeholder="Strength" required 
+            ng-model="player.strength" >
+        </label>
+      </div>
+      <div ng-style="{color:'red'}" ng-cloak 
+        ng-show="playerForm.$dirty && playerForm.$invalid">
+        <span ng-show="!!playerForm.$error.required"> Missing:</span>
+        <span ng-show="playerForm.name.$error.required"> Name.</span>
+        <span ng-show="playerForm.kind.$error.required"> Kind.</span>
+        <span ng-show="playerForm.strength.$error.required"> Strength.</span>
+        <span ng-show="playerForm.customer.$error.required"> Strength.</span>
+        <span ng-show="!!playerForm.$error.pattern"> Invalid: </span>
+        <span ng-show="playerForm.pon.$error.pattern"> Strength.</span>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<h4>Player</h4>
+<p>{{player}}</p>
+    

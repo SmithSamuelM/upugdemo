@@ -1,0 +1,52 @@
+<div class="row-fluid">
+  <div class="span3">
+  <h3>Team: {{team.name}} {{team.id}}</h3>
+  </div><!--/span3-->
+</div><!--/row-fluid-->
+
+
+<div class="row-fluid">
+  <div class="span3">
+    <div class="form-inline">
+      <label class="control-label" for="player-query-text">Filter</label>
+      <input id="player-query-text" ng-model="playerQuery">
+    </div>
+  </div><!--/span3-->
+</div><!--/row-fluid-->
+  
+
+
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped table-bordered table-condensed table-hover">
+      <caption  style="text-align:left"><h3>Players</h3></caption>
+      <thead>
+        <tr>
+          <th><a href=""ng-click="sortField='id';reverse=!reverse">Id</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Name</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Kind</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Strength</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Speed</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Health</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Attack</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Defend</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="player in team.players | filter:playerQuery | orderBy:sortField:reverse" >
+          <td>{{player.id}}</td>
+          <td>{{player.name}}</td>
+          <td>{{player.kind}}</td>
+          <td>{{player.strength}}</td>
+          <td>{{player.speed}}</td>
+          <td>{{player.health}}</td>
+          <td>{{player.attack}}</td>
+          <td>{{player.defend}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+    
+<h4>Team</h4>
+<p>{{team}}</p>
