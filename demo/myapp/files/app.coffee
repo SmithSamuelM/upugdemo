@@ -23,7 +23,13 @@ myApp.config ["$locationProvider", "$routeProvider",
         ).when("#{base}/app/team",
             templateUrl: "#{base}/static/files/team.html"
             controller: "TeamCtlr"
+        ).when("#{base}/app/team/:tid",
+            templateUrl: "#{base}/static/files/team.html"
+            controller: "TeamCtlr"
         ).when("#{base}/app/player",
+            templateUrl: "#{base}/static/files/player.html"
+            controller: "PlayerCtlr"
+        ).when("#{base}/app/player/:pid",
             templateUrl: "#{base}/static/files/player.html"
             controller: "PlayerCtlr"
         ).when("#{base}/app/directive",
@@ -49,56 +55,72 @@ myApp.controller('HomeCtlr', ['$scope', '$location', '$route',
 ])
 
 
-myApp.controller('TeamCtlr', ['$scope', '$location', '$route', 
+myApp.controller('TeamCtlr', ['$scope', '$routeParams', '$location', '$route', 
     'TeamService', 'PlayerService',
-    ($scope, $location, $route, TeamService, PlayerService) ->
+    ($scope, $routeParams, $location, $route, TeamService, PlayerService) ->
         $scope.$location = $location
         $scope.$route = $route
         $scope.location = window.location
         
         console.log("TeamCtlr")
-
         
-        $scope.team = TeamService.get({id: '1'})
+        $scope.tid = $routeParams.tid
+        if not $scope.tid
+            $scope.tid = 1
+            
+        $scope.team = TeamService.get({id: $scope.tid})
         
         return true
 ])
 
-myApp.controller('PlayerCtlr', ['$scope', '$location', '$route', 
+myApp.controller('PlayerCtlr', ['$scope', '$routeParams', '$location', '$route', 
     'TeamService', 'PlayerService',
-    ($scope, $location, $route, TeamService, PlayerService) ->
+    ($scope, $routeParams, $location, $route, TeamService, PlayerService) ->
         $scope.$location = $location
         $scope.$route = $route
         $scope.location = window.location
         
         console.log("PlayerCtlr")
         
-        $scope.kinds = ['good','bad']
+        
+        $scope.pid = $routeParams.pid
+        if not $scope.pid
+            $scope.pid = 1
+            
+        $scope.kindOptions = ['good','bad']
 
-        $scope.player = PlayerService.get({id: '3'},
+        $scope.player = PlayerService.get({id: $scope.pid},
             (data, headers) ->
                 console.log("PlayerService get success")
                 console.log(data)
                 console.log(headers())
                 console.log($scope.player)
-                $scope.player.speed = 5
-                $scope.player.health = 10
-                $scope.player.$put({},
-                    (data,headers)->
-                        console.log("PlayerService put success")
-                        console.log(data)
-                        console.log(headers())
-                    ,
-                    (response)->
-                        console.log("PlayerService put fail")
-                        console.log(response)
-                        console.log(response.headers())
-                )
             ,
             (response) ->
                 console.log("PlayerService get fail")
                 console.log(response)
                 console.log(response.headers())
+            )
+        
+        $scope.savePlayer = (pid) -> 
+            $scope.errored=false
+            $scope.alert=""
+            if $scope.playerForm.$invalid
+                $scope.playerForm.$dirty = true
+                $scope.errored = true
+                $scope.alert = "Some values are missing or invalid."
+                return
+            
+            $scope.player.$put({},
+                (data,headers)->
+                    console.log("PlayerService put success")
+                    console.log(data)
+                    console.log(headers())
+                ,
+                (response)->
+                    console.log("PlayerService put fail")
+                    console.log(response)
+                    console.log(response.headers())
             )
         
         return true

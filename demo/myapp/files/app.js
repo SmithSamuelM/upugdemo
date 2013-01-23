@@ -15,7 +15,13 @@
       }).when("" + base + "/app/team", {
         templateUrl: "" + base + "/static/files/team.html",
         controller: "TeamCtlr"
+      }).when("" + base + "/app/team/:tid", {
+        templateUrl: "" + base + "/static/files/team.html",
+        controller: "TeamCtlr"
       }).when("" + base + "/app/player", {
+        templateUrl: "" + base + "/static/files/player.html",
+        controller: "PlayerCtlr"
+      }).when("" + base + "/app/player/:pid", {
         templateUrl: "" + base + "/static/files/player.html",
         controller: "PlayerCtlr"
       }).when("" + base + "/app/directive", {
@@ -45,34 +51,54 @@
   ]);
 
   myApp.controller('TeamCtlr', [
-    '$scope', '$location', '$route', 'TeamService', 'PlayerService', function($scope, $location, $route, TeamService, PlayerService) {
+    '$scope', '$routeParams', '$location', '$route', 'TeamService', 'PlayerService', function($scope, $routeParams, $location, $route, TeamService, PlayerService) {
       $scope.$location = $location;
       $scope.$route = $route;
       $scope.location = window.location;
       console.log("TeamCtlr");
+      $scope.tid = $routeParams.tid;
+      if (!$scope.tid) {
+        $scope.tid = 1;
+      }
       $scope.team = TeamService.get({
-        id: '1'
+        id: $scope.tid
       });
       return true;
     }
   ]);
 
   myApp.controller('PlayerCtlr', [
-    '$scope', '$location', '$route', 'TeamService', 'PlayerService', function($scope, $location, $route, TeamService, PlayerService) {
+    '$scope', '$routeParams', '$location', '$route', 'TeamService', 'PlayerService', function($scope, $routeParams, $location, $route, TeamService, PlayerService) {
       $scope.$location = $location;
       $scope.$route = $route;
       $scope.location = window.location;
       console.log("PlayerCtlr");
-      $scope.kinds = ['good', 'bad'];
+      $scope.pid = $routeParams.pid;
+      if (!$scope.pid) {
+        $scope.pid = 1;
+      }
+      $scope.kindOptions = ['good', 'bad'];
       $scope.player = PlayerService.get({
-        id: '3'
+        id: $scope.pid
       }, function(data, headers) {
         console.log("PlayerService get success");
         console.log(data);
         console.log(headers());
-        console.log($scope.player);
-        $scope.player.speed = 5;
-        $scope.player.health = 10;
+        return console.log($scope.player);
+      }, function(response) {
+        console.log("PlayerService get fail");
+        console.log(response);
+        return console.log(response.headers());
+      });
+      $scope.savePlayer = function(pid) {
+        $scope.errored = false;
+        $scope.alert = "";
+        if ($scope.playerForm.$invalid) {
+          $scope.playerForm.$dirty = true;
+          $scope.errored = true;
+          $scope.alert = "Some values are missing or invalid.";
+          return;
+        }
         return $scope.player.$put({}, function(data, headers) {
           console.log("PlayerService put success");
           console.log(data);
@@ -82,11 +108,7 @@
           console.log(response);
           return console.log(response.headers());
         });
-      }, function(response) {
-        console.log("PlayerService get fail");
-        console.log(response);
-        return console.log(response.headers());
-      });
+      };
       return true;
     }
   ]);

@@ -30,11 +30,12 @@
           <th><a href="" ng-click="sortField='name';reverse=!reverse">Health</a></th>
           <th><a href="" ng-click="sortField='name';reverse=!reverse">Attack</a></th>
           <th><a href="" ng-click="sortField='name';reverse=!reverse">Defend</a></th>
+          <th><a href="" ng-click="sortField='name';reverse=!reverse">Team Id</a></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="player in team.players | filter:playerQuery | orderBy:sortField:reverse" >
-          <td>{{player.id}}</td>
+          <td><a href="{{basePath}}/app/player/{{player.id}}" title="Player Detail">{{player.id}}</a></td>
           <td>{{player.name}}</td>
           <td>{{player.kind}}</td>
           <td>{{player.strength}}</td>
@@ -42,6 +43,7 @@
           <td>{{player.health}}</td>
           <td>{{player.attack}}</td>
           <td>{{player.defend}}</td>
+          <td>{{player.tid}}</td>
         </tr>
       </tbody>
     </table>
