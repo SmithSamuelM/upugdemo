@@ -22,7 +22,7 @@ STATIC_LIBS_PATH =  path.join(
 STATIC_FILES_PATH = path.dirname(path.abspath(__file__))
 
 
-#catchall for page refreshes of any app url
+#catch all for page refreshes of any app url
 @app.route('/app/<path:path>') # /demo/app/<path>
 @app.route('/app') # /demo/app
 def appGet(path=''):

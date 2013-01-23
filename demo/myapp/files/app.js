@@ -12,9 +12,15 @@
       $routeProvider.when("" + base + "/app", {
         templateUrl: "" + base + "/static/files/home.html",
         controller: "HomeCtlr"
-      }).when("" + base + "/app/home", {
-        templateUrl: "" + base + "/static/files/home.html",
-        controller: "HomeCtlr"
+      }).when("" + base + "/app/team", {
+        templateUrl: "" + base + "/static/files/team.html",
+        controller: "TeamCtlr"
+      }).when("" + base + "/app/player", {
+        templateUrl: "" + base + "/static/files/player.html",
+        controller: "PlayerCtlr"
+      }).when("" + base + "/app/directive", {
+        templateUrl: "" + base + "/static/files/directive.html",
+        controller: "DirectiveCtlr"
       }).otherwise({
         redirectTo: "" + base + "/app"
       });
@@ -31,12 +37,33 @@
       $scope.teams = TeamService.query({
         id: ""
       });
-      $scope.team = TeamService.get({
-        id: '1'
-      });
       $scope.players = PlayerService.query({
         id: ""
       });
+      return true;
+    }
+  ]);
+
+  myApp.controller('TeamCtlr', [
+    '$scope', '$location', '$route', 'TeamService', 'PlayerService', function($scope, $location, $route, TeamService, PlayerService) {
+      $scope.$location = $location;
+      $scope.$route = $route;
+      $scope.location = window.location;
+      console.log("TeamCtlr");
+      $scope.team = TeamService.get({
+        id: '1'
+      });
+      return true;
+    }
+  ]);
+
+  myApp.controller('PlayerCtlr', [
+    '$scope', '$location', '$route', 'TeamService', 'PlayerService', function($scope, $location, $route, TeamService, PlayerService) {
+      $scope.$location = $location;
+      $scope.$route = $route;
+      $scope.location = window.location;
+      console.log("PlayerCtlr");
+      $scope.kinds = ['good', 'bad'];
       $scope.player = PlayerService.get({
         id: '3'
       }, function(data, headers) {
@@ -60,6 +87,16 @@
         console.log(response);
         return console.log(response.headers());
       });
+      return true;
+    }
+  ]);
+
+  myApp.controller('DirectiveCtlr', [
+    '$scope', '$location', '$route', 'TeamService', 'PlayerService', function($scope, $location, $route, TeamService, PlayerService) {
+      $scope.$location = $location;
+      $scope.$route = $route;
+      $scope.location = window.location;
+      console.log("DirectiveCtlr");
       return true;
     }
   ]);

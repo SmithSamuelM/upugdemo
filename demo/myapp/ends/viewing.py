@@ -28,7 +28,7 @@ def teamsGet():
     bottle.response.set_header('content-type', 'application/json')
     return json.dumps(teams) 
 
-@app.route('/backend/teams/<tid>') #angular strips trailing slash if no <name>
+@app.route('/backend/teams/<tid>') 
 def teamIdGet(tid):
     try:
         tid = int(tid)
