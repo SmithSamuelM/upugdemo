@@ -22,10 +22,10 @@ as attribute<pre class="prettyprint linenums">&lt;ANY ng-switch="{*}"&gt;
 </div>
 <h2 id="Example">Example</h2>
 <div class="example"><h4>Source</h4>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-180" source-edit-css="" source-edit-js="script.js-179" source-edit-unit="" source-edit-scenario="scenario.js-181"></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-177" source-edit-css="" source-edit-js="script.js-176" source-edit-unit="" source-edit-scenario="scenario.js-178"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-180" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-180">
+<pre class="prettyprint linenums" ng-set-text="index.html-177" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-177">
   
   <div ng-controller="Ctrl">
     <select ng-model="selection" ng-options="item for item in items">
@@ -41,8 +41,8 @@ as attribute<pre class="prettyprint linenums">&lt;ANY ng-switch="{*}"&gt;
 </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-179"></pre>
-<script type="text/ng-template" id="script.js-179">
+<pre class="prettyprint linenums" ng-set-text="script.js-176"></pre>
+<script type="text/ng-template" id="script.js-176">
     function Ctrl($scope) {
       $scope.items = ['settings', 'home', 'other'];
       $scope.selection = $scope.items[0];
@@ -50,8 +50,8 @@ as attribute<pre class="prettyprint linenums">&lt;ANY ng-switch="{*}"&gt;
   </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-181"></pre>
-<script type="text/ng-template" id="scenario.js-181">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-178"></pre>
+<script type="text/ng-template" id="scenario.js-178">
   it('should start in settings', function() {
    expect(element('.doc-example-live [ng-switch]').text()).toMatch(/Settings Div/);
   });
@@ -66,5 +66,5 @@ as attribute<pre class="prettyprint linenums">&lt;ANY ng-switch="{*}"&gt;
 </script>
 </div>
 </div><h4>Demo</h4>
-<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-180" ng-eval-javascript="script.js-179"></div></div>
+<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-177" ng-eval-javascript="script.js-176"></div></div>
 </div>

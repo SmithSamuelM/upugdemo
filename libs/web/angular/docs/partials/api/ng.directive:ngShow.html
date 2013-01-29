@@ -20,18 +20,18 @@ then the element is shown or hidden respectively.</p></li>
 </div>
 <h2 id="Example">Example</h2>
 <div class="example"><h4>Source</h4>
-<div source-edit="" source-edit-deps="angular.js" source-edit-html="index.html-175" source-edit-css="" source-edit-js="" source-edit-unit="" source-edit-scenario="scenario.js-176"></div>
+<div source-edit="" source-edit-deps="angular.js" source-edit-html="index.html-164" source-edit-css="" source-edit-js="" source-edit-unit="" source-edit-scenario="scenario.js-165"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-175" ng-html-wrap=" angular.js"></pre>
-<script type="text/ng-template" id="index.html-175">
+<pre class="prettyprint linenums" ng-set-text="index.html-164" ng-html-wrap=" angular.js"></pre>
+<script type="text/ng-template" id="index.html-164">
    Click me: <input type="checkbox" ng-model="checked"><br/>
    Show: <span ng-show="checked">I show up when your checkbox is checked.</span> <br/>
    Hide: <span ng-hide="checked">I hide when your checkbox is checked.</span>
 </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-176"></pre>
-<script type="text/ng-template" id="scenario.js-176">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-165"></pre>
+<script type="text/ng-template" id="scenario.js-165">
   it('should check ng-show / ng-hide', function() {
     expect(element('.doc-example-live span:first:hidden').count()).toEqual(1);
     expect(element('.doc-example-live span:last:visible').count()).toEqual(1);
@@ -44,5 +44,5 @@ then the element is shown or hidden respectively.</p></li>
 </script>
 </div>
 </div><h4>Demo</h4>
-<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-175" ng-eval-javascript=""></div></div>
+<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-164" ng-eval-javascript=""></div></div>
 </div>

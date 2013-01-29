@@ -10,6 +10,7 @@ and polyfills the HTML5 validation behavior for older browsers.</p></div>
        ngModel="{string}"
        [name="{string}"]
        [required]
+       [ngRequired="{boolean}"]
        [ngMinlength="{number}"]
        [ngMaxlength="{number}"]
        [ngPattern="{string}"]
@@ -22,6 +23,8 @@ and polyfills the HTML5 validation behavior for older browsers.</p></div>
 <p>Property name of the form under which the control is published.</p></li>
 <li><code ng:non-bindable="">required<i>(optional)</i> – {string=} – </code>
 <p>Sets <code>required</code> validation error key if the value is not entered.</p></li>
+<li><code ng:non-bindable="">ngRequired<i>(optional)</i> – {boolean=} – </code>
+<p>Sets <code>required</code> attribute if set to true</p></li>
 <li><code ng:non-bindable="">ngMinlength<i>(optional)</i> – {number=} – </code>
 <p>Sets <code>minlength</code> validation error key if the value is shorter than
 minlength.</p></li>
@@ -39,10 +42,10 @@ interaction with the input element.</p></li>
 </div>
 <h2 id="Example">Example</h2>
 <div class="example"><h4>Source</h4>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-152" source-edit-css="" source-edit-js="script.js-151" source-edit-unit="" source-edit-scenario="scenario.js-153"></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-135" source-edit-css="" source-edit-js="script.js-134" source-edit-unit="" source-edit-scenario="scenario.js-136"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-152" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-152">
+<pre class="prettyprint linenums" ng-set-text="index.html-135" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-135">
  
  <div ng-controller="Ctrl">
    <form name="myForm">
@@ -70,16 +73,16 @@ interaction with the input element.</p></li>
 </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-151"></pre>
-<script type="text/ng-template" id="script.js-151">
+<pre class="prettyprint linenums" ng-set-text="script.js-134"></pre>
+<script type="text/ng-template" id="script.js-134">
    function Ctrl($scope) {
      $scope.user = {name: 'guest', last: 'visitor'};
    }
  </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-153"></pre>
-<script type="text/ng-template" id="scenario.js-153">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-136"></pre>
+<script type="text/ng-template" id="scenario.js-136">
   it('should initialize to model', function() {
     expect(binding('user')).toEqual('{"name":"guest","last":"visitor"}');
     expect(binding('myForm.userName.$valid')).toEqual('true');
@@ -119,5 +122,5 @@ interaction with the input element.</p></li>
 </script>
 </div>
 </div><h4>Demo</h4>
-<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-152" ng-eval-javascript="script.js-151"></div></div>
+<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-135" ng-eval-javascript="script.js-134"></div></div>
 </div>

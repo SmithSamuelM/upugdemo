@@ -70,7 +70,7 @@
 
   angular.module("teamService", ["ngResource"]).factory("TeamService", [
     '$resource', function($resource) {
-      return $resource("/demo/backend/teams/:id", {
+      return $resource("/backend/teams/:id", {
         id: '@id'
       }, {
         put: {
@@ -83,12 +83,18 @@
 
   angular.module("playerService", ["ngResource"]).factory("PlayerService", [
     '$resource', function($resource) {
-      return $resource("/demo/backend/players/:id", {
+      return $resource("/backend/players/:id", {
         id: '@id'
       }, {
-        put: {
+        update: {
           method: 'PUT',
           params: {}
+        },
+        create: {
+          method: 'POST',
+          params: {
+            id: ''
+          }
         }
       });
     }

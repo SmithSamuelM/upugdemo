@@ -40,3 +40,6 @@ def staticFilesGet(filepath):
 def staticLibsGet(filepath):
     return bottle.static_file(filepath, root=STATIC_FILES_PATH)
 
+@app.route('/bootstrap') # /demo/app
+def appGet(path=''):
+    return bottle.static_file('bootstrap.html', root=STATIC_FILES_PATH)

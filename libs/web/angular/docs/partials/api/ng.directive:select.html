@@ -27,6 +27,7 @@ be bound to string values only.</p></div>
 <div class="usage">as element (see <a href="guide/ie">IE restrictions</a>)<pre class="prettyprint linenums">&lt;select
        name="{string}"
        [required]
+       [ngRequired="{string}"]
        [ngOptions="{comprehension_expression}"]&gt;
 &lt;/select&gt;</pre>
 <h3 id="Parameters">Parameters</h3>
@@ -34,6 +35,10 @@ be bound to string values only.</p></div>
 <p>assignable expression to data-bind to.</p></li>
 <li><code ng:non-bindable="">required<i>(optional)</i> – {string=} – </code>
 <p>The control is considered valid only if value is entered.</p></li>
+<li><code ng:non-bindable="">ngRequired<i>(optional)</i> – {string=} – </code>
+<p>Adds <code>required</code> attribute and <code>required</code> validation constraint to
+the element when the ngRequired expression evaluates to true. Use <code>ngRequired</code> instead of
+<code>required</code> when you want to data-bind to the <code>required</code> attribute.</p></li>
 <li><code ng:non-bindable="">ngOptions<i>(optional)</i> – {comprehension_expression=} – </code>
 <p>in one of the following forms:</p>
 

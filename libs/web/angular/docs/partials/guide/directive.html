@@ -72,7 +72,7 @@ contain embedded expressions. These expressions are registered as <a href="api/n
 here:</p>
 
 <pre class="prettyprint linenums">
-&lt;img src="img/{{username}}.jpg"&gt;Hello {{username}}!&lt;/img&gt;
+&lt;a href="img/{{username}}.jpg"&gt;Hello {{username}}!&lt;/a&gt;
 </pre>
 
 <h2>Compilation process, and directive matching</h2>
@@ -262,7 +262,7 @@ as to copy content into the DOM from the scope.</p></li>
 
 <p>In most cases you will not need such fine control and so the above can be simplified. All of the
 different parts of this skeleton are explained in following sections. In this section we are
-interested only isomers of this skeleton.</p>
+interested only in some of this skeleton.</p>
 
 <p>The first step in simplyfing the code is to rely on the default values. Therefore the above can be
 simplified as:</p>
@@ -324,23 +324,25 @@ The 'isolate' scope takes an object hash which defines a set of local scope prop
 derived from the parent scope. These local properties are useful for aliasing values for
 templates. Locals definition is a hash of local scope property to its source:</p>
 
-<ul><li><p><code>@</code> or <code>@attr</code> - bind a local scope property to the DOM attribute. The result is always a
-string since DOM attributes are strings. If no <code>attr</code> name is specified then the local name
-and attribute name are same. Given <code>&lt;widget my-attr="hello {{name}}"&gt;</code> and widget definition
+<ul><li><p><code>@</code> or <code>@attr</code> - bind a local scope property to the value of DOM attribute. The result is
+always a string since DOM attributes are strings. If no <code>attr</code> name is specified  then the
+attribute name is assumed to be the same as the local name.
+Given <code>&lt;widget my-attr="hello {{name}}"&gt;</code> and widget definition
 of <code>scope: { localName:'@myAttr' }</code>, then widget scope property <code>localName</code> will reflect
 the interpolated value of <code>hello {{name}}</code>. As the <code>name</code> attribute changes so will the
 <code>localName</code> property on the widget scope. The <code>name</code> is read from the parent scope (not
 component scope).</p></li>
-<li><p><code>=</code> or <code>=expression</code> - set up bi-directional binding between a local scope property and the
-parent scope property. If no <code>attr</code> name is specified then the local name and attribute
-name are same. Given <code>&lt;widget my-attr="parentModel"&gt;</code> and widget definition of
-<code>scope: { localModel:'=myAttr' }</code>, then widget scope property <code>localName</code> will reflect the
+<li><p><code>=</code> or <code>=attr</code> - set up bi-directional binding between a local scope property and the
+parent scope property of name defined via the value of the <code>attr</code> attribute. If no <code>attr</code>
+name is specified then the attribute name is assumed to be the same as the local name.
+Given <code>&lt;widget my-attr="parentModel"&gt;</code> and widget definition of
+<code>scope: { localModel:'=myAttr' }</code>, then widget scope property <code>localModel</code> will reflect the
 value of <code>parentModel</code> on the parent scope. Any changes to <code>parentModel</code> will be reflected
 in <code>localModel</code> and any changes in <code>localModel</code> will reflect in <code>parentModel</code>.</p></li>
 <li><p><code>&amp;</code> or <code>&amp;attr</code> - provides a way to execute an expression in the context of the parent scope.
-If no <code>attr</code> name is specified then the local name and attribute name are same.
-Given <code>&lt;widget my-attr="count = count + value"&gt;</code> and widget definition of
-<code>scope: { localFn:'increment()' }</code>, then isolate scope property <code>localFn</code> will point to
+If no <code>attr</code> name is specified then the attribute name is assumed to be the same as the
+local name. Given <code>&lt;widget my-attr="count = count + value"&gt;</code> and widget definition of
+<code>scope: { localFn:'&amp;myAttr' }</code>, then isolate scope property <code>localFn</code> will point to
 a function wrapper for the <code>increment()</code> expression. Often it's desirable to pass data from
 the isolate scope via an expression and to the parent scope, this can be done by passing a
 map of local variable names and values into the expression wrapper fn. For example, if the
@@ -349,7 +351,7 @@ expression is <code>increment(amount)</code> then we can specify the amount valu
 <li><p><code>controller</code> - Controller constructor function. The controller is instantiated before the
 pre-linking phase and it is shared with other directives if they request it by name (see
 <code>require</code> attribute). This allows the directives to communicate with each other and augment
-each other behavior. The controller is injectable with the following locals:</p>
+each other's behavior. The controller is injectable with the following locals:</p>
 
 <ul><li><code>$scope</code> - Current scope associated with the element</li>
 <li><code>$element</code> - Current element</li>
@@ -519,7 +521,7 @@ into the dialog.</p>
 <p>Here is an example of what the template definition for the <code>dialog</code> widget may look like.</p>
 
 <pre class="prettyprint linenums">
-  &lt;div ng-show="show()"&gt;
+  &lt;div ng-show="show"&gt;
     &lt;h3&gt;{{title}}&lt;/h3&gt;
     &lt;div class="body" ng-transclude&gt;&lt;/div&gt;
     &lt;div class="footer"&gt;
@@ -539,10 +541,10 @@ expects as follows:</p>
 
 <pre class="prettyprint linenums">
   scope: {
-    title: 'bind',          // set up title to accept data-binding
-    onOk: 'expression',     // create a delegate onOk function
-    onCancel: 'expression', // create a delegate onCancel function
-    show: 'accessor'        // create a getter/setter function for visibility.
+    title: '=',             // set up title to accept data-binding
+    onOk: '&',              // create a delegate onOk function
+    onCancel: '&',          // create a delegate onCancel function
+    show: '='
   }
 </pre>
 

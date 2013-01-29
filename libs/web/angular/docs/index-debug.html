@@ -22,12 +22,12 @@
           baseUrl = location.href.replace(rUrl, indexFile),
           jQuery = /index-jq[^\.]*\.html$/.test(baseUrl),
           debug = /index[^\.]*-debug\.html$/.test(baseUrl),
-          gae = (baseUrl.split('/').length == 4),
+          production = location.hostname === 'docs.angularjs.org',
           headEl = document.getElementsByTagName('head')[0],
           sync = true,
           angularVersion = {
-            current: '1.0.2', // rewrite during build
-            stable: '1.0.1'
+            current: '1.0.3', // rewrite during build
+            stable: '1.0.2'
           };
 
       addTag('base', {href: baseUrl});
@@ -45,7 +45,7 @@
       addTag('script', {src: 'docs-keywords.js'}, sync);
 
       function path(name) {
-        if (gae) {
+        if (production) {
           if (name.match(/^angular(-\w+)?\.js/) && !name.match(/bootstrap/)) {
             name =  '//ajax.googleapis.com/ajax/libs/angularjs/' +
                 angularVersion.stable +
@@ -55,7 +55,7 @@
             name =  'http://code.angularjs.org/' +
                 angularVersion.stable +
                 '/' +
-                name.replace(/\.js$/, '-' + angularVersion.stable +'.min.js');
+                name.replace(/\.js$/, '.min.js');
           }
           return name;
         }
@@ -126,10 +126,10 @@
                 <i class="icon-eye-open icon-white"></i> Learn <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li class="disabled"><a href="">Why AngularJS?</a></li>
+                <li class="disabled"><a href="http://angularjs.org/">Why AngularJS?</a></li>
                 <li><a href="http://www.youtube.com/user/angularjs">Watch</a></li>
                 <li><a href="tutorial">Tutorial</a></li>
-                <li><a href="https://github.com/angular/angular.js/wiki/Projects-using-AngularJS">Case Studies</a></li>
+                <li><a href="http://builtwith.angularjs.org/">Case Studies</a></li>
                 <li><a href="misc/faq">FAQ</a></li>
               </ul>
             </li>
@@ -139,10 +139,10 @@
                 <i class="icon-book icon-white"></i> Develop <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="tutorial">Tutorial</a></li>
-                <li><a href="guide/">Developer Guide</a></li>
-                <li><a href="api/">API Reference</a></li>
-                <li><a href="misc/contribute">Contribute</a></li>
+                <li><a href="http://docs.angularjs.org/tutorial">Tutorial</a></li>
+                <li><a href="http://docs.angularjs.org/guide/">Developer Guide</a></li>
+                <li><a href="http://docs.angularjs.org/api/">API Reference</a></li>
+                <li><a href="http://docs.angularjs.org/misc/contribute">Contribute</a></li>
                 <li><a href="http://code.angularjs.org/">Download</a></li>
               </ul>
             </li>

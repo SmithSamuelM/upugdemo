@@ -55,7 +55,7 @@ view.</p>
 repeater tells Angular to create a <code>&lt;li&gt;</code> element for each phone in the list using the first <code>&lt;li&gt;</code>
 tag as the template.</p></li>
 <li><p>As we've learned in step 0, the curly braces around <code>phone.name</code> and <code>phone.snippet</code> denote
-bindings. As opposed to evaluating constants, these expression are refering to our application
+bindings. As opposed to evaluating constants, these expressions are referring to our application
 model, which was set up in our <code>PhoneListCtrl</code> controller.</p>
 
 <p><img class="diagram" src="img/tutorial/tutorial_02.png"></p></li>
@@ -134,30 +134,24 @@ to write them.</p>
 writing tests. Although Angular does not require you to use Jasmine, we wrote all of the tests in
 this tutorial in Jasmine. You can learn about Jasmine on the <a href="http://pivotal.github.com/jasmine/">Jasmine home page</a> and on the <a href="https://github.com/pivotal/jasmine/wiki">Jasmine wiki</a>.</p>
 
-<p>The angular-seed project is pre-configured to run all unit tests using <a href="http://code.google.com/p/js-test-driver/">JsTestDriver</a>. To run the test, do the following:</p>
+<p>The angular-seed project is pre-configured to run all unit tests using <a href="http://vojtajina.github.com/testacular/">Testacular</a>. To run the test, do the following:</p>
 
 <ol>
 <li><p>In a <em>separate</em> terminal window or tab, go to the <code>angular-phonecat</code> directory and run
-<code>./scripts/test-server.sh</code> to start the test web server.</p></li>
-<li><p>Open a new browser window and navigate to <a href="http://localhost:9876">http://localhost:9876</a>.</p></li>
-<li><p>Choose "Capture this browser in strict mode".</p>
+<code>./scripts/test.sh</code> to start the Testacular server.</p></li>
+<li><p>Testacular will start a new instance of Chrome browser automatically. Just ignore it and let it run in
+the background. Testacular will use this browser for test execution.</p></li>
+<li><p>You should see the following or similar output in the terminal:</p>
 
-<p>At this point, you can leave this window open and forget about it. JsTestDriver will use it to
-execute the tests and report the results in the terminal.</p></li>
-<li><p>Execute the test by running <code>./scripts/test.sh</code></p>
-
-<p>You should see the following or similar output:</p>
-
-<pre><code>     Chrome: Runner reset.
-     .
-     Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
-       Chrome 19.0.1084.36 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
+<pre><code>     info: Testacular server started at http://localhost:9876/
+     info (launcher): Starting  browser "Chrome"
+     info (Chrome 22.0): Connected on socket id tPUm9DXcLHtZTKbAEO-n
+     Chrome 22.0: Executed 1 of 1 SUCCESS (0.093 secs / 0.004 secs)
 </code></pre>
 
-<p>Yay! The test passed! Or not...</p>
-
-<p>Note: If you see errors after you run the test, close the browser window and go back to the
-terminal and kill the script, then repeat the procedure above.</p></li>
+<p>Yay! The test passed! Or not...</p></li>
+<li><p>To rerun the tests, just change any of the source or test files. Testacular will notice the change
+and will rerun the tests for you. Now isn't that sweet?</p></li>
 </ol>
 
 <h2>Experiments</h2>
@@ -188,8 +182,7 @@ terminal and kill the script, then repeat the procedure above.</p></li>
     &lt;tr ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7]"&gt;&lt;td&gt;{{i+1}}&lt;/td&gt;&lt;/tr&gt;
   &lt;/table&gt;
 </code></pre></li>
-<li><p>Make the unit test fail by changing the <code>toBe(3)</code> statement to <code>toBe(4)</code>, and rerun the
-<code>./scripts/test.sh</code> script.</p></li>
+<li><p>Make the unit test fail by changing the <code>toBe(3)</code> statement to <code>toBe(4)</code>.</p></li>
 </ul>
 
 <h2>Summary</h2>

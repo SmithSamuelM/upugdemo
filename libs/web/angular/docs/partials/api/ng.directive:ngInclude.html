@@ -56,10 +56,10 @@ make sure you wrap it in quotes, e.g. <code>src="'myPartialTemplate.html'"</code
 </div>
 <h2 id="Example">Example</h2>
 <div class="example"><h4>Source</h4>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-123 template1.html template2.html" source-edit-css="" source-edit-js="script.js-124" source-edit-unit="" source-edit-scenario="scenario.js-125"></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-157 template1.html template2.html" source-edit-css="" source-edit-js="script.js-158" source-edit-unit="" source-edit-scenario="scenario.js-159"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-123" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-123">
+<pre class="prettyprint linenums" ng-set-text="index.html-157" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-157">
  <div ng-controller="Ctrl">
    <select ng-model="template" ng-options="t.name for t in templates">
     <option value="">(blank)</option>
@@ -83,8 +83,8 @@ make sure you wrap it in quotes, e.g. <code>src="'myPartialTemplate.html'"</code
 </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-124"></pre>
-<script type="text/ng-template" id="script.js-124">
+<pre class="prettyprint linenums" ng-set-text="script.js-158"></pre>
+<script type="text/ng-template" id="script.js-158">
   function Ctrl($scope) {
     $scope.templates =
       [ { name: 'template1.html', url: 'template1.html'}
@@ -94,8 +94,8 @@ make sure you wrap it in quotes, e.g. <code>src="'myPartialTemplate.html'"</code
  </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-125"></pre>
-<script type="text/ng-template" id="scenario.js-125">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-159"></pre>
+<script type="text/ng-template" id="scenario.js-159">
   it('should load template1.html', function() {
    expect(element('.doc-example-live [ng-include]').text()).
      toMatch(/Content of template1.html/);
@@ -112,5 +112,5 @@ make sure you wrap it in quotes, e.g. <code>src="'myPartialTemplate.html'"</code
 </script>
 </div>
 </div><h4>Demo</h4>
-<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-123" ng-eval-javascript="script.js-124"></div></div>
+<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-157" ng-eval-javascript="script.js-158"></div></div>
 </div>

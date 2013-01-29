@@ -8,7 +8,7 @@
     "$locationProvider", "$routeProvider", function($locationProvider, $routeProvider) {
       var base;
       $locationProvider.html5Mode(true);
-      base = '/demo';
+      base = '';
       $routeProvider.when("" + base + "/app", {
         templateUrl: "" + base + "/static/files/home.html",
         controller: "HomeCtlr"

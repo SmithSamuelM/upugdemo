@@ -18,5 +18,5 @@ def testGet():
 import ends # dynamic rest endpoint package
 import files #static file package    
 
-app.mount(BASE_PATH, app) #remount app to be behind BASE_PATH for proxy
+#app.mount(BASE_PATH, app) #remount app to be behind BASE_PATH for proxy
 # http://localhost:8080/demo/test

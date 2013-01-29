@@ -24,10 +24,10 @@ as class<pre class="prettyprint linenums">&lt;ANY class="ng-bind-template: {stri
 <h2 id="Example">Example</h2>
 <div class="example"><p>Try it here: enter text in text box and watch the greeting change.
 <h4>Source</h4>
-<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-102" source-edit-css="" source-edit-js="script.js-101" source-edit-unit="" source-edit-scenario="scenario.js-103"></div>
+<div source-edit="" source-edit-deps="angular.js script.js" source-edit-html="index.html-105" source-edit-css="" source-edit-js="script.js-104" source-edit-unit="" source-edit-scenario="scenario.js-106"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-102" ng-html-wrap=" angular.js script.js"></pre>
-<script type="text/ng-template" id="index.html-102">
+<pre class="prettyprint linenums" ng-set-text="index.html-105" ng-html-wrap=" angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html-105">
     
     <div ng-controller="Ctrl">
      Salutation: <input type="text" ng-model="salutation"><br>
@@ -37,8 +37,8 @@ as class<pre class="prettyprint linenums">&lt;ANY class="ng-bind-template: {stri
   </script>
 </div>
 <div class="tab-pane" title="script.js">
-<pre class="prettyprint linenums" ng-set-text="script.js-101"></pre>
-<script type="text/ng-template" id="script.js-101">
+<pre class="prettyprint linenums" ng-set-text="script.js-104"></pre>
+<script type="text/ng-template" id="script.js-104">
       function Ctrl($scope) {
         $scope.salutation = 'Hello';
         $scope.name = 'World';
@@ -46,8 +46,8 @@ as class<pre class="prettyprint linenums">&lt;ANY class="ng-bind-template: {stri
     </script>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-103"></pre>
-<script type="text/ng-template" id="scenario.js-103">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-106"></pre>
+<script type="text/ng-template" id="scenario.js-106">
     it('should check ng-bind', function() {
       expect(using('.doc-example-live').binding('salutation')).
         toBe('Hello');
@@ -63,5 +63,5 @@ as class<pre class="prettyprint linenums">&lt;ANY class="ng-bind-template: {stri
   </script>
 </div>
 </div><h4>Demo</h4>
-<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-102" ng-eval-javascript="script.js-101"></div></div>
+<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-105" ng-eval-javascript="script.js-104"></div></div>
 </div>

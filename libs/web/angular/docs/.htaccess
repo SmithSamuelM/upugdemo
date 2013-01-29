@@ -6,8 +6,9 @@
 #
 # This file must be processed by Rake in order to replace %ANGULAR_VERSION% with the actual version.
 
+Options -Indexes
 RewriteEngine on
-RewriteCond %{HTTP_COOKIE}      ng-offline=1.0.2
+RewriteCond %{HTTP_COOKIE}      ng-offline=1.0.3
 RewriteRule appcache.manifest   appcache-offline.manifest
 
 ## Redirect to the latest manifest

@@ -18,14 +18,14 @@ production.</li>
 </ul>
 
 <p>To point your code to an angular script on the angular server, use the following template.  This
-example points to (non-minified) version 0.10.6:</p>
+example points to (non-minified) version 1.0.2:</p>
 
 <pre class="prettyprint linenums">
   &lt;!doctype html&gt;
   &lt;html ng-app&gt;
     &lt;head&gt;
       &lt;title&gt;My Angular App&lt;/title&gt;
-      &lt;script src="http://code.angularjs.org/angular-0.10.6.js"&gt;&lt;/script&gt;
+      &lt;script src="http://code.angularjs.org/1.0.2/angular.js"&gt;&lt;/script&gt;
     &lt;/head&gt;
     &lt;body&gt;
     &lt;/body&gt;
@@ -45,24 +45,25 @@ Download the version you want and have fun.</p>
 <p>Each directory under <a href="http://code.angularjs.org/">http://code.angularjs.org/</a> includes the following set of files:</p>
 
 <ul>
-<li><p><strong><code>angular-&lt;version&gt;.js</code></strong> — This file is non-obfuscated, non-minified, and human-readable by
+<li><p><strong><code>angular.js</code></strong> — This file is non-obfuscated, non-minified, and human-readable by
 opening it it any editor or browser. In order to get better error messages during development, you
 should always use this non-minified angular script.</p></li>
-<li><p><strong><code>angular-&lt;version&gt;.min.js</code></strong> — This is a minified and obfuscated version of
-<code>angular-&lt;version&gt;.js</code> created with the Closure compiler. Use this version for production in order
+<li><p><strong><code>angular.min.js</code></strong> — This is a minified and obfuscated version of
+<code>angular.js</code> created with the Closure compiler. Use this version for production in order
 to minimize the size of the application that is downloaded by your user's browser.</p></li>
-<li><p><strong><code>angular-&lt;version&gt;.tgz</code></strong> — This is a tarball archive that contains all of the files released
+<li><p><strong><code>angular.zip</code></strong> — This is a zip archive that contains all of the files released
 for this angular version. Use this file to get everything in a single download.</p></li>
-<li><p><strong><code>angular-ie-compat-&lt;version&gt;.js</code></strong> — This is a special file that contains code and data
-specifically tailored for getting Internet Explorer to work with angular. If you host your own copy
-of angular files, make sure that this file is available for download, and that it resides under the
-same parent path as <code>angular-&lt;version&gt;.js</code> or <code>angular-&lt;version&gt;.min.js</code>.</p></li>
-<li><p><strong><code>angular-mocks-&lt;version&gt;.js</code></strong> — This file contains an implementation of mocks that makes
+<li><p><strong><code>angular-mocks.js</code></strong> — This file contains an implementation of mocks that makes
 testing angular apps even easier. Your unit/integration test harness should load this file after
 <code>angular-&lt;version&gt;.js</code> is loaded.</p></li>
-<li><p><strong><code>angular-scenario-&lt;version&gt;.js</code></strong> — This file is a very nifty JavaScript file that allows you
+<li><p><strong><code>angular-scenario.js</code></strong> — This file is a very nifty JavaScript file that allows you
 to write and execute end-to-end tests for angular applications.</p></li>
-<li><p><strong><code>docs-&lt;version&gt;</code></strong> — this directory contains all the files that compose the
+<li><p><strong><code>angular-loader.min.js</code></strong> — Module loader for Angular modules. If you are loading multiple script files containing
+Angular modules, you can load them asynchronosuly and in any order as long as you load this file first. Often the
+contents of this file are copy&amp;pasted into the <code>index.html</code> to avoid even the inial request to <code>angular-loader.min.js</code>.
+See <a href="https://github.com/angular/angular-seed/blob/master/app/index-async.html">angular-seed</a> for an example of usage.</p></li>
+<li><p><strong><code>angular-resource.js</code></strong>, <strong><code>angular-cookies.js</code></strong>, etc - extra Angular modules with additional functionality.</p></li>
+<li><p><strong><code>docs</code></strong> — this directory contains all the files that compose the
 <a href="http://docs.angularjs.org/">http://docs.angularjs.org/</a> documentation app. These files are handy to see the older version of
 our docs, or even more importantly, view the docs offline.</p></li>
 </ul></div>

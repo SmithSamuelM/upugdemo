@@ -4,9 +4,8 @@
 <div><h2>What is a Module?</h2>
 
 <p>Most applications have a main method which instantiates, wires, and bootstraps the application.
-Angular apps don't have a main method, instead modules serve the purpose of declaratively
-specifying how an application should be bootstrapped. There are several advantages to this
-approach:</p>
+Angular apps don't have a main method. Instead modules declaratively specify how an application
+should be bootstrapped. There are several advantages to this approach:</p>
 
 <ul>
 <li>The process is more declarative which is easier to understand</li>
@@ -44,7 +43,7 @@ bootstraps the app using your module.</li>
 <pre class="prettyprint linenums" ng-set-text="script.js-68"></pre>
 <script type="text/ng-template" id="script.js-68">
       // declare a module
-      var simpleAppModule = angular.module('myApp', []);
+      var myAppModule = angular.module('myApp', []);
 
       // configure the module.
       // in this example we will create a greeting filter

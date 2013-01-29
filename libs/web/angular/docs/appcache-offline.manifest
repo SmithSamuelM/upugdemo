@@ -1,10 +1,9 @@
 CACHE MANIFEST
-# 2012-08-31T23:30:34.863Z
+# 2012-11-28T21:36:22.420Z
 
 # cache all of these
 CACHE:
 ../angular.min.js
-app.yaml
 css/bootstrap.min.css
 css/doc_widgets.css
 css/docs.css
@@ -57,11 +56,9 @@ index-jq-nocache.html
 index-jq.html
 index-nocache.html
 index.html
-index.yaml
 js/docs.js
 js/jquery.js
 js/jquery.min.js
-main.py
 partials/api/angular.bind.html
 partials/api/angular.bootstrap.html
 partials/api/angular.copy.html

@@ -31,7 +31,7 @@ match.</p>
 
 <ul>
 <li><code>controller</code> – <code>{(string|function()=}</code> – Controller fn that should be associated with newly
-created scope or the name of a <a href="api/angular.Module#controller"><code>registered controller</code></a> 
+created scope or the name of a <a href="api/angular.Module#controller"><code>registered controller</code></a>
 if passed as a string.</li>
 <li><code>template</code> – <code>{string=}</code> –  html template as a string that should be used by
 <a href="api/ng.directive:ngView"><code>ngView</code></a> or
@@ -42,7 +42,7 @@ this property takes precedence over <code>templateUrl</code>.</li>
 <li><p><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - An optional map of dependencies which should
 be injected into the controller. If any of these dependencies are promises, they will be
 resolved and converted to a value before the controller is instantiated and the
-<code>$afterRouteChange</code> event is fired. The map object is:</p>
+<code>$routeChangeSuccess</code> event is fired. The map object is:</p>
 
 <ul><li><code>key</code> – <code>{string}</code>: a name of a dependency to be injected into the controller.</li>
 <li><code>factory</code> - <code>{string|function}</code>: If <code>string</code> then it is an alias for a service.

@@ -14,9 +14,9 @@ myApp = angular.module("myApp", ['genericDirectives', 'teamService', 'playerServ
 myApp.config ["$locationProvider", "$routeProvider",
     ($locationProvider, $routeProvider) ->
         $locationProvider.html5Mode(true)
-
+        
         #using absolute urls here in html5 mode
-        base = '/demo' # for use in coffeescript string interpolation #{base}
+        base = '' # for use in coffeescript string interpolation #{base}
         $routeProvider.when("#{base}/app",
             templateUrl: "#{base}/static/files/home.html"
             controller: "HomeCtlr"

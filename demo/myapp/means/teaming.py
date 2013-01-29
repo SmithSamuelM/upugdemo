@@ -1,7 +1,13 @@
 """ teaming.py  team members
 
 """
-from collections import OrderedDict as ODict
+import sys
+
+if sys.version_info[1] < 7: #python 2.6 or earlier
+    from  ordereddict import OrderedDict as ODict
+else:
+    from collections import OrderedDict as  ODict
+
 
 nextTID = 1
 nextPID = 1

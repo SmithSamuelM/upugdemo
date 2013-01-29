@@ -24,10 +24,10 @@ result of the evaluation can be a string representing space delimited class name
 </div>
 <h2 id="Example">Example</h2>
 <div class="example"><h4>Source</h4>
-<div source-edit="" source-edit-deps="angular.js" source-edit-html="index.html-110" source-edit-css="style.css-111" source-edit-js="" source-edit-unit="" source-edit-scenario="scenario.js-112"></div>
+<div source-edit="" source-edit-deps="angular.js" source-edit-html="index.html-113" source-edit-css="style.css-114" source-edit-js="" source-edit-unit="" source-edit-scenario="scenario.js-115"></div>
 <div class="tabbable"><div class="tab-pane" title="index.html">
-<pre class="prettyprint linenums" ng-set-text="index.html-110" ng-html-wrap=" angular.js"></pre>
-<script type="text/ng-template" id="index.html-110">
+<pre class="prettyprint linenums" ng-set-text="index.html-113" ng-html-wrap=" angular.js"></pre>
+<script type="text/ng-template" id="index.html-113">
    <ol ng-init="names=['John', 'Mary', 'Cate', 'Suz']">
      <li ng-repeat="name in names">
       <span ng-class-odd="'odd'" ng-class-even="'even'">
@@ -38,8 +38,8 @@ result of the evaluation can be a string representing space delimited class name
 </script>
 </div>
 <div class="tab-pane" title="style.css">
-<pre class="prettyprint linenums" ng-set-text="style.css-111"></pre>
-<style type="text/css" id="style.css-111">
+<pre class="prettyprint linenums" ng-set-text="style.css-114"></pre>
+<style type="text/css" id="style.css-114">
   .odd {
     color: red;
   }
@@ -49,8 +49,8 @@ result of the evaluation can be a string representing space delimited class name
 </style>
 </div>
 <div class="tab-pane" title="End to end test">
-<pre class="prettyprint linenums" ng-set-text="scenario.js-112"></pre>
-<script type="text/ng-template" id="scenario.js-112">
+<pre class="prettyprint linenums" ng-set-text="scenario.js-115"></pre>
+<script type="text/ng-template" id="scenario.js-115">
   it('should check ng-class-odd and ng-class-even', function() {
     expect(element('.doc-example-live li:first span').prop('className')).
       toMatch(/odd/);
@@ -60,5 +60,5 @@ result of the evaluation can be a string representing space delimited class name
 </script>
 </div>
 </div><h4>Demo</h4>
-<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-110" ng-eval-javascript=""></div></div>
+<div class="well doc-example-live" ng-embed-app="" ng-set-html="index.html-113" ng-eval-javascript=""></div></div>
 </div>
